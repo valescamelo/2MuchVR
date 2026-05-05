@@ -5,11 +5,6 @@ import time
 import shutil
 import os
 
-#Função centralizar texto
-
-def centralizar(texto):
-    largura = shutil.get_terminal_size().columns
-    return texto.center(largura)
 
 #Iniciando o player 
 
@@ -19,42 +14,51 @@ pygame.mixer.music.play()
 
 letra = [
     (0, 'Say, "I love you" under my breath'),
-    (3.5, 'More times than you can digest'),
-    (7.5, 'Music every time I hear your name, oh'),
-    (12.5, "Your head's layin' right on my chest"),
-    (16.5, "Sun's up, but I still ain't got no rest"),
-    (20.5, "Don't wanna close my eyes, I'm scared I'll miss too much"),
-    (26.5, "Don't wanna fall asleep, I'd rather fall in love"),
-    (31.5, "When I can't feel you, I feel out of touch"),
-    (35.5, "Two seconds without you's like two months")
+    (4.0, 'More times than you can digest'),
+    (8.0, 'Music every time I hear your name, oh'),
+    (13.0, "Your head's layin' right on my chest"),
+    (17.0, "Sun's up, but I still ain't got no rest"),
+    (21.0, "Don't wanna close my eyes, I'm scared I'll miss too much"),
+    (27.0, "Don't wanna fall asleep, I'd rather fall in love"),
+    (32.0, "When I can't feel you, I feel out of touch"),
+    (36.0, "Two seconds without you's like two months")
 ]
 
-inicio = time.time()
+
+inicio = time.perf_counter()
 
 for i in range(len(letra)):
     tempo, linha = letra[i]
 
-    if i < len(letra) - 1:
-        proximo_tempo = letra[i + 1][0]
+    #anterior
+    if i > 0:
+        linha_anterior = letra[i - 1][1]
     else:
-        proximo_tempo = tempo + 4
+        linha_anterior = ""
 
-    while time.time() - inicio < tempo:
-        time.sleep(0.005)
+    #próxima
+    if i < len(letra) - 1:
+        proxima_linha = letra[i + 1][1]
+    else:
+        proxima_linha = ""
+
+    while time.perf_counter() - inicio < tempo:
+        time.sleep(0.001)
+                   
 
     os.system('cls')
 
-    texto = linha
+    
+    if linha_anterior:
+        print(Fore.LIGHTBLACK_EX + linha_anterior + Style.RESET_ALL)
+        print()
 
-    duracao = proximo_tempo - tempo
-    delay_por_letra = (duracao / len(texto)) * 1.0
+    print(Fore.CYAN + linha + Style.RESET_ALL)
+    print()
 
-    for letra_char in texto:
-        print(Fore.CYAN + letra_char, end="", flush=True)
-        time.sleep(delay_por_letra)
-
-    print(Style.RESET_ALL)
-
+    if proxima_linha:
+        print(Fore.WHITE + proxima_linha + Style.RESET_ALL)
+    
 while pygame.mixer.music.get_busy():
     time.sleep(1)
 
