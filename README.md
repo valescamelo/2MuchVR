@@ -1,4 +1,4 @@
-Projeto simples de karaokê com:
+Projeto simples com:
 - Reprodução de música (pygame)
 - Letra sincronizada
 - Efeito visual estilo terminal
