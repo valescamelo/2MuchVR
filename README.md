@@ -1,11 +1,19 @@
-Projeto simples com:
-- Reprodução de música (pygame)
+# 🎶 Karaoke em Python
+
+Projeto de karaokê simples feito em Python.
+
+## ✨ Funcionalidades
+- Reprodução de música com pygame
 - Letra sincronizada
 - Efeito visual estilo terminal
+- Texto centralizado e colorido
 
-## ▶️ Como rodar
+## 🚀 Como rodar
 
+1. Instale as dependências:
+pip install pygame colorama
+
+2. Adicione um arquivo .mp3 na pasta
+
+3. Execute:
 python musica.py
-
-## 📌 Observação
-Adicione seu próprio arquivo .mp3 na pasta do projeto.
